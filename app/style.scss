@@ -1,0 +1,207 @@
+/*COLORS*/
+/*Primary Color*/
+$color-primary: rgb(32, 148, 243); 
+/*Text Colors*/
+$color-text-primary-black: rgb(18, 18, 18);
+$color-text-secondary-black: rgb(102, 102, 102);
+$color-text-primary-white: rgb(233, 233, 233);
+$color-text-secondary-white: rgb(128, 128, 128);
+/*Background Colors*/
+$color-bg-dark: rgb(18, 18, 18);
+$color-bg-light: rgb(255, 255, 255);
+/*Input Background Colors*/
+$color-input-bg-dark: rgb(39, 39, 39);
+$color-input-bg-light: rgb(233, 233, 233);
+
+/*FONTS*/
+/*Font Family*/
+$font-family: Arial, Helvetica, sans-serif;
+/*Font Sizes*/
+$font-base-size: 0.875rem;
+$font-small-size: 1rem;
+$font-medium-size: 1.375rem;
+$font-large-size: 1.625rem;
+$font-extra-large-size: 2rem;
+/*Font Weights*/
+$font-weight-regular: 400;
+$font-weight-bold: 700;
+/*Line Heights*/    
+$line-height-base: 1.5;
+$line-height-heading: 1.2;
+  
+
+/*RESETS*/
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    font: inherit;
+}
+
+body {
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none; 
+    cursor: pointer;
+    color: inherit; 
+}
+
+img {
+    display: block;
+    max-width: 100%; 
+    height: auto;
+}
+
+input, button {
+    border: none;
+    outline: 0;
+    font: inherit;
+}
+
+/*TYPOGRAPHY*/
+
+body {
+    font-family: $font-family;
+    font-size: $font-base-size;
+    line-height: $line-height-base;
+}
+
+p {
+    font-size: $font-small-size;
+}
+
+/*UTILITIES*/
+
+.container {
+    width: calc(100% - 32px);
+    max-width: 1000px;
+    margin-inline: auto;
+}
+
+/*NAVIGATION*/
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 24px;
+
+    &__logo {
+        font-size: $font-medium-size;
+        font-weight: $font-weight-bold;
+        opacity: 87%;
+    }
+
+    &__theme {
+        cursor: pointer;
+        background: transparent;
+    }
+
+    &__theme img {
+        display: grid;
+        place-items: center;  
+        width: 24px;
+        height: 24px; 
+    }
+
+}
+
+.header {
+    max-width: 650px;
+    padding: 50px 0px 24px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 12px;
+    
+
+    &__title {
+        font-size: clamp($font-medium-size, 1.325rem + 1.2vw, $font-large-size);
+        font-weight: $font-weight-bold;
+        line-height: 1.0;
+        opacity: 87%;
+    }
+
+    &__subtitle {
+        font-size: clamp($font-small-size, 1.325rem + 1.2vw, $font-medium-size);
+        font-weight: $font-weight-regular;
+        line-height: 1.0;
+        opacity: 40%;
+    }
+
+    &__search {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+
+        &-input {
+            flex: 1;
+            height: 45px;
+            padding-left: 14px;
+            font-size: 1rem;
+            border-radius: 8px;
+
+            &:focus {
+                outline: 2px solid $color-primary;
+            }
+        }
+
+        &-button {
+            position: absolute;
+            right: 0;
+            background: transparent;
+            padding: 10px 15px 10px 15px;
+            border-radius: 0px 8px 8px 0px;
+            cursor: pointer;
+
+            img {
+                filter: brightness(0) saturate(100%) invert(53%) sepia(82%) saturate(3787%) hue-rotate(187deg) brightness(102%) contrast(91%);
+                width: 24px;
+                height: 24px;
+            }
+        }
+    }
+}
+
+/*THEME*/ 
+
+/*LIGHT THEME*/
+
+body {
+    background-color: $color-bg-light;
+    color: $color-text-primary-black;
+
+    nav.navbar >  a.navbar__logo {
+        color: $color-text-primary-black;
+    }
+    
+    nav.navbar > button.navbar__theme > img {
+        filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(16%) hue-rotate(314deg) brightness(95%) contrast(105%);
+    }
+
+    header.header > form.header__search > input.header__search-input {
+        background-color: $color-input-bg-light;
+        color: inherit;
+    }
+
+}
+
+main.result {
+
+
+    div.card {
+        border: 1px solid red;
+        max-width: 250px;
+    }
+
+}
