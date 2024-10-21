@@ -82,7 +82,6 @@ p {
 }
 
 /*UTILITIES*/
-
 .container {
     width: calc(100% - 32px);
     max-width: 1000px;
@@ -129,6 +128,7 @@ p {
     &__title {
         font-size: clamp($font-medium-size, 1.325rem + 1.2vw, $font-large-size);
         font-weight: $font-weight-bold;
+        text-align: center;
         line-height: 1.0;
         opacity: 87%;
     }
@@ -136,6 +136,7 @@ p {
     &__subtitle {
         font-size: clamp($font-small-size, 1.325rem + 1.2vw, $font-medium-size);
         font-weight: $font-weight-regular;
+        text-align: center;
         line-height: 1.0;
         opacity: 40%;
     }
@@ -153,7 +154,7 @@ p {
             padding-left: 14px;
             font-size: 1rem;
             border-radius: 8px;
-
+            
             &:focus {
                 outline: 2px solid $color-primary;
             }
@@ -180,30 +181,31 @@ p {
 main.result {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 16px;
+    grid-auto-flow: dense;
+    grid-gap: 16px;
 
-    a.image__link {
+    a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         border-radius: 8px;
-        border: 1px solid #ccc;
-        
+        box-shadow: 0 4px 6px -1px rgba(0,0,0,0.5);
 
         img {
             width: 100%;
-            height: auto;
-            
-
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
         }
 
+        img:hover {
+            filter: grayscale(.6) contrast(50%) brightness(50%);
+        }
     }
-
-    
-
-
-    
-
 }
 
 section.error {
+    max-width: 650px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -211,13 +213,13 @@ section.error {
 
     p.error__message {
         text-align: center;
-        font-size: clamp(1.125rem, 0.875rem + 1vw, 1.5rem);
+        font-size: clamp(1.125rem, 0.7917rem + 1.3333vw, 1.375rem);
         opacity: 87%;
     }
 
     img {
-        width: 400px;
-        height: 400px;
+        width: 350px;
+        height: 350px;
     }
 }
 
@@ -248,7 +250,6 @@ a.scroll-up {
 /*THEME*/ 
 
 /*LIGHT THEME*/
-
 body {
     background-color: $color-bg-light;
     color: $color-text-primary-black;
@@ -261,10 +262,28 @@ body {
         filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(16%) hue-rotate(314deg) brightness(95%) contrast(105%);
     }
 
-    header.header > form.header__search > input.header__search-input {
+    header.header > div.header__search > input.header__search-input {
         background-color: $color-input-bg-light;
         color: inherit;
     }
+}
 
+/*DARK THEME*/
+body.dark-theme {
+    background-color: $color-bg-dark;
+    color: $color-text-primary-white;
+
+    nav.navbar >  a.navbar__logo {
+        color: $color-text-primary-white;
+    }
+    
+    nav.navbar > button.navbar__theme > img {
+        filter: brightness(0) saturate(100%) invert(100%) sepia(98%) saturate(0%) hue-rotate(13deg) brightness(104%) contrast(102%);
+    }
+
+    header.header > div.header__search > input.header__search-input {
+        background-color: $color-input-bg-dark;
+        color: inherit;
+    }
 }
 

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Phortogal</title>
     <link rel="stylesheet" href="/app/css/style.css">
+    <script src="/app/js/script.js" defer></script>
 </head>
 <body>
 
@@ -18,56 +19,26 @@
     <header class="header container">
         <h1 class="header__title">Explore the World of Images</h1>
         <h2 class="header__subtitle">Find thousands of images with a simple tap.</h2>
-        <form class="header__search" id="search-form" aria-label="Image search form">
+        <div class="header__search" id="search-form" aria-label="Image search form">
             <input class="header__search-input" type="text" id="word-input" placeholder="Search for any images..." autocomplete="off" aria-label="Search input">
             <button class="header__search-button" type="submit" id="search-button" aria-label="Search">
                 <img src="/app/assets/icons/magnifying-glass-solid.svg" alt="Search icon">
             </button>
-        </form>
+        </div>
     </header>
-
-    <main class="result container">
-        <section class="images">
-            <a href="" target="_blank"class="image__link">
-                <img src="/app/assets/sticker/images.jpg" alt="">
-            </a>
-            <a href="" target="_blank"class="image__link">
-                <img src="/app/assets/sticker/images.jpg" alt="">
-            </a>
-            <a href="" target="_blank"class="image__link">
-                <img src="/app/assets/sticker/images.jpg" alt="">
-            </a>
-            <a href="" target="_blank"class="image__link">
-                <img src="/app/assets/sticker/images.jpg" alt="">
-            </a>
-            <a href="" target="_blank"class="image__link">
-                <img src="/app/assets/sticker/images.jpg" alt="">
-            </a>
-            <a href="" target="_blank"class="image__link">
-                <img src="/app/assets/sticker/images.jpg" alt="">
-            </a>
-            <a href="" target="_blank"class="image__link">
-                <img src="/app/assets/sticker/images.jpg" alt="">
-            </a>
-            <a href="" target="_blank"class="image__link">
-                <img src="/app/assets/sticker/images.jpg" alt="">
-            </a>
-        </section>
-    </main>
-
-    <section class="error container">
-        <img src="/app/assets/sticker/error.png" alt="">
-        <p class="error__message">Oops! the word you entered isn’t found. It seems it’s not in the system. Please try another one!</p>
-    </section>
-
-    
 
     <a class="scroll-up" href="#navigation">
         <img src="/app/assets/icons/arrow-up-solid.svg" alt="">
     </a>
 
+    <main class="result container" id="image-result">
+        
+    </main>
+
     
 
+    
+    
     
 </body>
 </html>
