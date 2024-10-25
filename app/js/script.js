@@ -1,11 +1,8 @@
 const accessKey = 'KaD6o2jifbNMLxNz0xJ6UuG9aLNwDZP4l421WiXJPBU';
+const errorResult = document.getElementById("error-result");
 const imageResult = document.getElementById("image-result");
 const searchInput = document.getElementById("word-input");
 const searchButton = document.getElementById("search-button");
-const error = document.getElementById("error");
-const theme_button = document.getElementById("theme-button");
-
-
 
 // SEARCH IMAGE
 async function fetchSearchImg() {
@@ -15,37 +12,37 @@ async function fetchSearchImg() {
 
     try {
         const response = await fetch(searchURL);
-
-        if (!response.ok) {
-            alert("Response is not Okay!");
-            throw new Error("HTTP error!: Response is not Okay!");
-        }
-
         const data = await response.json();
 
-        imageResult.innerHTML = ''; 
-
-        if (data.results.length === 0) {
-            alert("No images can be found!");
-            return;
+        if(data.results.length === 0) {
+            imageResult.innerHTML = null;
+            errorResult.innerHTML = 
+            `<section class="error">
+                <img src="/app/assets/sticker/error.png" alt="">
+                <p class="error__message">We're sorry, but the image you're looking for cannot be found. Please check the URL or try refreshing the page.</p>
+            </section>`;
+        } else { 
+            errorResult.innerHTML = null;
+            imageResult.innerHTML = null; 
+            data.results.forEach(image => {
+                const anchor = document.createElement('a');
+                anchor.href = image.links.download;
+                anchor.target = "_blank"; 
+    
+                const img = document.createElement('img');
+                img.src = image.urls.small; 
+                img.alt = image.alt_description || "Random Unsplash Image";
+                img.title = image.alt_description; 
+    
+                anchor.appendChild(img);
+                imageResult.appendChild(anchor);
+            });
         }
 
-        data.results.forEach(image => {
-            const anchor = document.createElement('a');
-            anchor.href = image.links.download;
-            anchor.target = "_blank"; 
-
-            const img = document.createElement('img');
-            img.src = image.urls.small; 
-            img.alt = image.alt_description || "Random Unsplash Image";
-            img.title = image.alt_description; 
-
-            anchor.appendChild(img);
-            imageResult.appendChild(anchor);
-        });
-
     } catch (error) {
+
         console.error("Error fetching data:", error.message);
+        
     }
 }
 
@@ -62,48 +59,27 @@ async function fetchRandomImg() {
 
     try {
         const response = await fetch(randomURL);
-
         if (!response.ok) {
-            alert("Response is not Okay!");
             throw new Error("HTTP error!: Response is not Okay!");
+        } else {
+            const data = await response.json();
+
+            data.forEach(image => {
+                const anchor = document.createElement('a');
+                anchor.href = image.links.download;
+                anchor.target = "_blank";
+
+                const img = document.createElement('img');
+                img.src = image.urls.small;
+                img.alt = image.alt_description || "Random Unsplash Image";
+
+                anchor.appendChild(img);
+                imageResult.appendChild(anchor);
+            });
         }
-
-        const data = await response.json();
-
-        data.forEach(image => {
-            const anchor = document.createElement('a');
-            anchor.href = image.links.download;
-            anchor.target = "_blank";
-
-            const img = document.createElement('img');
-            img.src = image.urls.small;
-            img.alt = image.alt_description || "Random Unsplash Image";
-
-            anchor.appendChild(img);
-            imageResult.appendChild(anchor);
-        });
-
     } catch (error) {
         console.error("Error fetching data:", error.message);
     }
 }
 
 window.addEventListener('DOMContentLoaded', fetchRandomImg);
-
-//THEME MODE
-const getTheme = localStorage.getItem("theme");
-if (getTheme == "dark-theme") {
-    document.body.classList.add(getTheme);
-}
-
-function theme() {
-    document.body.classList.toggle('dark-theme');
-
-    if (document.body.classList.contains('dark-theme')) {
-        localStorage.setItem("theme", "dark-theme");
-    } else {
-        localStorage.removeItem("theme");
-    }
-}
-
-theme_button.addEventListener("click", theme);

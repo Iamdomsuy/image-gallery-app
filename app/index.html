@@ -3,20 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="This is a web application for displaying high-quality images that can be used and downloaded.">
+    <meta name="author" content="Dominic Suyo">
+    <meta name="keywords" content="image gallery, photo gallery">
+    <link rel="shortcut icon" href="/app/favicon.svg" type="image/x-icon">
     <title>Phortogal</title>
     <link rel="stylesheet" href="/app/css/style.css">
     <script src="/app/js/script.js" defer></script>
 </head>
-<body>
-
-    <nav class="navbar container" id="navigation">
-        <a href="#" class="navbar__logo">Phortogal.</a>
-        <button class="navbar__theme" type="button" aria-label="Button theme" id="theme-button">
-            <img class="icon" src="/app/assets/icons/circle-half-stroke-solid.svg" alt="Theme icon">
-        </button>
-    </nav>
-
-    <header class="header container">
+<body class="dark-theme">
+    <header class="header" id="header">
         <h1 class="header__title">Explore the World of Images</h1>
         <h2 class="header__subtitle">Find thousands of images with a simple tap.</h2>
         <div class="header__search" id="search-form" aria-label="Image search form">
@@ -26,19 +22,10 @@
             </button>
         </div>
     </header>
-
-    <a class="scroll-up" href="#navigation">
+    <main class="result" id="image-result"></main>
+    <main class="error" id="error-result"></main>
+    <a class="scroll-up" href="#header">
         <img src="/app/assets/icons/arrow-up-solid.svg" alt="">
     </a>
-
-    <main class="result container" id="image-result">
-        
-    </main>
-
-    
-
-    
-    
-    
 </body>
 </html>
